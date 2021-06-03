@@ -23,7 +23,7 @@ class LoadingBouncingLine extends StatefulWidget {
     this.borderSize,
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 1000),
-  }):super(key: key);
+  }) : super(key: key);
 
   @override
   _LoadingBouncingLineState createState() => _LoadingBouncingLineState();
@@ -68,15 +68,20 @@ class _LoadingBouncingLineState extends State<LoadingBouncingLine>
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.fromSize(
-      size: Size.square(widget.size),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          for (int i = 0; i < (widget.noOfDots??3); i++)...[SizedBox(width: 5,) ,_buildShape(_animation, i),SizedBox(width: 5,)]
-        ],
-      ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        for (int i = 0; i < (widget.noOfDots ?? 3); i++) ...[
+          SizedBox(
+            width: 5,
+          ),
+          _buildShape(_animation, i),
+          SizedBox(
+            width: 5,
+          )
+        ]
+      ],
     );
   }
 
@@ -93,18 +98,18 @@ class _LoadingBouncingLineState extends State<LoadingBouncingLine>
       child: widget.itemBuilder != null
           ? widget.itemBuilder(context, index)
           : DecoratedBox(
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: _animation1.value,
-          border: Border.all(
-            color: widget.borderColor,
-            width: widget.borderSize != null
-                ? widget.borderSize / 4
-                : widget.size / 32,
-            style: BorderStyle.solid,
-          ),
-        ),
-      ),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: _animation1.value,
+                border: Border.all(
+                  color: widget.borderColor,
+                  width: widget.borderSize != null
+                      ? widget.borderSize / 4
+                      : widget.size / 32,
+                  style: BorderStyle.solid,
+                ),
+              ),
+            ),
     );
   }
 
